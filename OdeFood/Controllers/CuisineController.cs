@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace OdeFood.Controllers
 {
-    [Log]
+    //x [Log] //! Custom Attribute
     public class CuisineController : Controller
     {
         //x [Authorize] // This makes sure the user is logged in 
