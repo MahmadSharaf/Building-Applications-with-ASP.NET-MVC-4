@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OdeFood.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,9 +7,10 @@ using System.Web.Mvc;
 
 namespace OdeFood.Controllers
 {
+    [Log]
     public class CuisineController : Controller
     {
-        // GET: Cuisine
+        //x [Authorize] // This makes sure the user is logged in 
         public ActionResult Search(string name = "French")
         {
             //! Server is a property that inherited in the controller that can be used to get to the server type utilities and variables including HtmlEncode.
@@ -25,7 +27,9 @@ namespace OdeFood.Controllers
             //x return File(Server.MapPath("~/Content/site.css"), "text/css");
 
             //! Returns a serialized json to the response body
-            return Json(new { Message = message, Name = "Sharaf" }, JsonRequestBehavior.AllowGet);
+            //x return Json(new { Message = message, Name = "Sharaf" }, JsonRequestBehavior.AllowGet);
+
+            return Content(message);
         }
     }
 }

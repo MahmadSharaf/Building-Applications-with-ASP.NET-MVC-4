@@ -30,9 +30,11 @@ namespace OdeFood.Controllers
             //return View();
 
             //? Second approach uses Model
-            var model = new AboutModel();
-            model . Name     = "Sharaf"       ; 
-            model . Location = "Cairo, Egypt" ; 
+            var model = new AboutModel
+            {
+                Name     = "Sharaf"       , 
+                Location = "Cairo, Egypt"   
+            };
             return View(model); //sends the Model object "model" to the view
         }
 
