@@ -9,6 +9,15 @@ namespace OdeFood.Controllers
 {
     public class ReviewsController : Controller
     {
+        [ChildActionOnly] //! Makes this action not accessible directly through a URL
+        public ActionResult BestReview()
+        {
+            var bestReview = from r in _reviews
+                             orderby r.Rating descending
+                             select r;
+            return PartialView("_Review", bestReview.First());
+        }
+
         // GET: Reviews
         public ActionResult Index()
         {
@@ -52,23 +61,22 @@ namespace OdeFood.Controllers
         // GET: Reviews/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var review = _reviews.Single(r => r.Id == id);
+
+            return View(review);
         }
 
         // POST: Reviews/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            try
+            var review = _reviews.Single(r => r.Id == id);
+            if (TryUpdateModel(review))
             {
-                // TODO: Add update logic here
-
+                // ..
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(review);
         }
 
         // GET: Reviews/Delete/5
