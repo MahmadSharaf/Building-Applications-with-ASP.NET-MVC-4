@@ -11,6 +11,9 @@ namespace OdeFood.Models
         public string Name    { get ; set ; } 
         public string City    { get ; set ; } 
         public string Country { get ; set ; } 
-        public ICollection<RestaurantReview> Reviews { get; set; }
+        //! Virtual forces MVC to load the table as if it is not there a null exception will be thrown and virtual is one of many other solutions and the easiest one
+        //! but it may affect the performance 
+        public virtual ICollection<RestaurantReview> Reviews { get; set; }
+        
     }
 }   
